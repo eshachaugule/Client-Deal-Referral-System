@@ -1,0 +1,55 @@
+.outnavbar {
+    background-color: #060b26;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .container{
+    text-align: left;
+    font-size: 34px;
+    margin-top: 40px;
+    margin-bottom: 35px;
+    color: #fff;
+    padding: 30px;
+  }
+  .container2{
+    text-align: center;
+    font-size: 34px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    color: #060b26;
+    padding: 10px;
+  }
+  
+  .nav-login{
+    width: 80%;
+    height: 50px;
+    padding: 8px 40px 8px 20px;
+    border-radius: 2px;
+    background: linear-gradient(
+      90deg,
+      rgb(39, 176, 255) 0%,
+      rgb(0, 232, 236) 100%
+    );
+    outline: none;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  .nav-signup{
+    width: 80%;
+    height: 50px;
+    padding: 8px 40px 8px 20px;
+    border-radius: 2px;
+    background: linear-gradient(
+      90deg,
+      rgb(39, 176, 255) 0%,
+      rgb(0, 232, 236) 100%
+    );
+    outline: none;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+  }

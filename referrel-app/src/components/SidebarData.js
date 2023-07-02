@@ -6,11 +6,10 @@ import * as MdIcons from 'react-icons/md';
 import * as CgIcons from 'react-icons/cg';
 import * as BiIcons from 'react-icons/bi';
 
-
 export const SidebarData = [
    {
       title: 'My Deals',
-      path: '/',
+      path: '/mydeals',
       icon: <LuIcons.LuClipboardList/>,
       cName: 'nav-text'
    },
@@ -42,6 +41,12 @@ export const SidebarData = [
       title: 'Support',
       path: '/support',
       icon: <BiIcons.BiSupport/>,
+      cName: 'nav-text'
+   },
+   {
+      title: 'Log Out',
+      path: '/',
+      icon: <MdIcons.MdLogout/>,
       cName: 'nav-text'
    }
 ];

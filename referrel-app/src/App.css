@@ -35,7 +35,8 @@
   to {
     transform: rotate(360deg);
   }
-} */
+}
+ */
 
 
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
@@ -45,9 +46,12 @@
   margin: 0;
   padding: 0;
   font-family: 'Lato', sans-serif;
+  text-align: center;
 }
 
 .leaderboard,
+.createaccount,
+.login,
 .mydeals,
 .newreferral,
 .profile,
