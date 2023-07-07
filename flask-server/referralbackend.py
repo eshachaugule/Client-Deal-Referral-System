@@ -1,6 +1,21 @@
-from flask import Flask
+from flask import Flask, request, json, jsonify
 
 app = Flask(__name__)
+
+@app.route("/supporty", methods = ["POST", "GET"])
+def supporty():
+    if request.is_json:
+        ererr = request.json
+        response = app.response_class(
+            response = json.dumps(ererr),
+            status = 200,
+            mimetype='application/json'
+        )
+        return (response)
+    else:
+        ererr = request.json
+        return ("Failed to get data")    #return jsonify({'Final_referral': final_referral}), 201
+
 
 import pandas as pd
 
@@ -14,17 +29,17 @@ merge = pd.concat([pd.merge(deals, employees, left_on = ['Bank Employee Contact'
 
 merge.drop("Designation", inplace = True, axis = 1)
 
-client_name = 'Kara Martinez'
+client_name = response.clientname
 
 merge = merge[merge['Client (Person)'] != client_name]
 
-preferred_deal_type = 'Public'
+preferred_deal_type = response.dealtype
 merge_after_deal_type_pref = merge[merge["Deal Type"] == preferred_deal_type]
     
-preferred_product = 'Schools'
+preferred_product = response.product
 merge_after_product_pref = merge_after_deal_type_pref[merge_after_deal_type_pref["Product"] == preferred_product]
 
-preferred_region = 'Latin America'
+preferred_region = response.region
 merge_after_region_pref = merge_after_product_pref[merge_after_product_pref["Region"] == preferred_region]
 
 merge_after_sort = merge_after_region_pref.sort_values(by = ['Experience (Years)'], ascending = False)
@@ -51,9 +66,12 @@ for client in range(len(merge_after_sort.index)):
         
 merge_after_sort['Client Capacity'].iloc[client]
 
-@app.route("/employeereferral")
+@app.route("/employeereferral", methods= ['GET'])
 def elements():
     return {"elements": [Employee_Name, Employee_Company_Department, Employee_Client_Capacity, Employee_Experience_Years, Employee_Designation, Matched_Client_Name, Matched_Client_Industry_Product, Matched_Client_Region_Country]}
     #return jsonify({'Final_referral': final_referral}), 201
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)

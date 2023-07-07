@@ -182,7 +182,7 @@ const FormSignup = ({ submitForm }) => {
           {errors.clientname && <p>{errors.clientname}</p>}
         </div>
         <div className='form-inputs'>
-          <label className='form-label'>Client Company*</label>
+          <label className='form-label'>Client Company</label>
           <input
             className='form-input'
             type='text'
@@ -191,7 +191,6 @@ const FormSignup = ({ submitForm }) => {
             value={values.clientcompany}
             onChange={handleChange}
           />
-          {errors.clientcompany && <p>{errors.clientcompany}</p>}
         </div>
         <div className='form-inputs' >
           <label className='form-label' >Bank Department</label>

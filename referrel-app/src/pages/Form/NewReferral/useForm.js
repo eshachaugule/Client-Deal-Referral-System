@@ -4,7 +4,6 @@ import Axios from 'axios';
 const useForm = (callback, validate) => {
   const [values, setValues] = useState({
     clientname: '',
-    clientcompany: '',
     dealtype: '',
     region: '',
     industry: '',
@@ -21,10 +20,37 @@ const useForm = (callback, validate) => {
     });
     console.log(value)
   };
+  const [data, setData] = useState([{}])
 
-  const url = ""
+  const url = "http://127.0.0.1:5000/supporty"
   const handleSubmit = e => {
     e.preventDefault();
+
+    const bodyyy = {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+            body: JSON.stringify(values)
+    }
+    fetch("/supporty",  bodyyy)    
+    .then(
+        response => { 
+          return response.json()
+      }).then(json => {
+        console.log(json)
+      })
+
+    // Axios.post("http://127.0.0.1:5000/supporty", {
+    //   headers: {
+    //          "Content-Type": "application/json",
+    //        },
+    //        mode: 'no-cors',
+    //        clientname: values.clientname,
+    //       dealtype: values.dealtype
+    //       }).then((response)=> {
+    //         console.log(response.values)
+    //       })
 
     
     setErrors(validate(values));

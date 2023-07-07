@@ -7,7 +7,10 @@ const FormSuccess = () => {
 
   useEffect( () =>{
 
-    fetch("/employeereferral")    
+    fetch("/employeereferral", {
+      method: 'GET',
+
+    })    
     .then(
         res => res.json()
       ).then(
