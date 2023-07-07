@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 const FormSignup = ({ submitForm }) => {
 
-  const { handleChange, handleSubmit, values, errors } = useForm(
+  const { handleChange, handleSubmit, handleDropdown, values, errors } = useForm(
     submitForm,
     validate
   );
@@ -125,7 +125,6 @@ const FormSignup = ({ submitForm }) => {
   const [ industry, setIndustry] = useState([]);
   const [ product, setProduct] = useState([]);
 
-  const[selects, setSelects] = useState();
 
   useEffect(()=>{
     setRegion(regions);
@@ -134,6 +133,15 @@ const FormSignup = ({ submitForm }) => {
   const handleRegion = (id) => {
     const dt = countries.filter(x => x.regionId === id);
     setState(dt);
+
+    const regionMap = region.filter(x => x.id === id)
+    const finalRegion = regionMap.map(
+        (element) => {
+            return (element.name)
+        }
+    )
+    values.region = String(finalRegion)
+    console.log(String(finalRegion))
   }
 
   useEffect(()=>{
@@ -143,10 +151,16 @@ const FormSignup = ({ submitForm }) => {
   const handleIndustry = (id) => {
     const dt = products.filter(x => x.industryId === id);
     setProduct(dt);
+
+    const industryMap = industry.filter(x => x.id === id)
+    const finalIndustry = industryMap.map(
+        (element) => {
+            return (element.name)
+        }
+    )
+    values.industry = String(finalIndustry)
+    console.log(String(finalIndustry))
   }
-
-
-
 
 
   return (
@@ -252,13 +266,14 @@ const FormSignup = ({ submitForm }) => {
                   }
 
                   </select>
-                  
+                  {errors.region && <p>{errors.region}</p>}
+
             </div>
 
         </div>
         <div className='form-inputs'>
           <label className='form-label'>Country</label>
-      <select id="ddlStates" className='form-input' >
+      <select id="ddlStates" className='form-input' onChange={(e) => handleDropdown(e.target.value)}>
         <option value="0" selected disabled >Select Country</option>
         {
           country && 
@@ -291,7 +306,8 @@ const FormSignup = ({ submitForm }) => {
             }
 
             </select>    
-      
+            {errors.industry && <p>{errors.industry}</p>}
+
           </div>
 
         </div>
@@ -299,7 +315,7 @@ const FormSignup = ({ submitForm }) => {
           <label className='form-label'>Product*</label>
          
 
-          <select id="ddlStates" className='form-input' value={selects} onChange={(e) => setSelects(e.target.value)}>
+          <select id="ddlStates" className='form-input' onChange={(e) => handleDropdown(e.target.value)}>
                   <option value = "0" selected disabled >Select Product</option>
                   {
                   product && 
@@ -310,11 +326,12 @@ const FormSignup = ({ submitForm }) => {
                       )
                   })
                   :"No Product"
-               
+
                 }
 
           </select>
-         
+          {errors.product && <p>{errors.product}</p>}
+
         </div>
         
         <button className='form-input-btnn' type='submit'>

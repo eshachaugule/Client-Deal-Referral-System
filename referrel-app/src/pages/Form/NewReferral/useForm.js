@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
+import Axios from 'axios';
 
 const useForm = (callback, validate) => {
   const [values, setValues] = useState({
     clientname: '',
     clientcompany: '',
-    companydepartment: '',
     dealtype: '',
+    region: '',
+    industry: '',
+    product: ''
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,13 +19,21 @@ const useForm = (callback, validate) => {
       ...values,
       [name]: value
     });
+    console.log(value)
   };
 
+  const url = ""
   const handleSubmit = e => {
     e.preventDefault();
 
+    
     setErrors(validate(values));
     setIsSubmitting(true);
+  };
+
+  const handleDropdown = e => {
+    values.product=e
+    console.log(e)
   };
 
   useEffect(
@@ -34,7 +45,7 @@ const useForm = (callback, validate) => {
     [errors]
   );
 
-  return { handleChange, handleSubmit, values, errors };
+  return { handleChange, handleSubmit, handleDropdown, values, errors };
 };
 
 export default useForm;

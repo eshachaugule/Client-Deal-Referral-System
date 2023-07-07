@@ -37,16 +37,15 @@ const FormSuccess = () => {
     expansion in the best way possible.
   </h2>
   <div className='form-labelll'>
-      {(typeof data.members == 'undefined') ? (
+      {(typeof data.elements == 'undefined') ? (
         <p> Loading...</p>
       ) : (
-        data.members.map((member, i)=> (
-          <p key = {i}> {member}</p>
+        data.elements.map((element, i)=> (
+          <p key = {i}>{element}</p>
         ))
       )}
     </div>
-        <button className='form-inputtt-btn' type='submit' onClick={(e) => {
-      e.preventDefault();
+        <button className='form-inputtt-btn' type='submit' onClick={(e) => {e.preventDefault();
       window.location.href='/newreferral';
       }}>
           Create another Referral!

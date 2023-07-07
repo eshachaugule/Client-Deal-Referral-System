@@ -13,5 +13,14 @@ export default function validateInfo(values) {
   if (!values.dealtype.trim()) {
     errors.dealtype = 'Deal Type required';
   }
+  if (!values.region.trim()) {
+    errors.region = 'Region Type required';
+  }
+  if (!values.industry.trim()) {
+    errors.industry = 'Industry Type required';
+  }
+  if (!values.product.trim()) {
+    errors.product = 'Product Type required';
+  }
   return errors;
 }
